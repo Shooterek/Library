@@ -36,7 +36,7 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Content="Dodaj wypożyczenie"
-                                    Command="{Binding AddReservation, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                    Command="{Binding DataContext.AddReservation, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
                                     CommandParameter="{Binding BookId}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

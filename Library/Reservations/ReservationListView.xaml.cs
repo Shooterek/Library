@@ -24,5 +24,10 @@ namespace Library.Reservations
         {
             InitializeComponent();
         }
+
+        private void ReservationListView_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

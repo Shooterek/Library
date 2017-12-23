@@ -7,6 +7,17 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-            
+        <DataGrid ItemsSource="{Binding Books}"
+                  AutoGenerateColumns="False"
+                  Grid.Row="1">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Title}"
+                                    Width="*"/>
+                <DataGridTextColumn Binding="{Binding Author}"
+                                    Width="*"/>
+                <DataGridTextColumn Binding="{Binding Publisher}"
+                                    Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>

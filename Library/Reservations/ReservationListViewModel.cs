@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Library.Reservations
 {
-    public class ReservationListViewModel
+    public class ReservationListViewModel : BindableBase
     {
     }
 }

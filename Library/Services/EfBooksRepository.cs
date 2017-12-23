@@ -16,9 +16,9 @@ namespace Library.Services
             return _dbContext.Books.ToList();
         }
 
-        public Book GetBookById(int bookId)
+        public List<Book> GetBooksByTitle(string bookTitle)
         {
-            return _dbContext.Books.SingleOrDefault(b => b.BookId == bookId);
+            return _dbContext.Books.Where(b=>b.Title.Contains(bookTitle)).ToList();
         }
 
         public void UpdateBook(Book book)

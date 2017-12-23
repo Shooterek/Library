@@ -3,11 +3,56 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:client="clr-namespace:Library.Clients"
         xmlns:local="clr-namespace:Library"
+        xmlns:reserv="clr-namespace:Library.Reservations"
+        xmlns:book="clr-namespace:Library.Books"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
+    <Window.DataContext>
+        <local:MainWindowViewModel/>
+    </Window.DataContext>
     <Window.Resources>
+        <DataTemplate DataType="{x:Type client:ClientListViewModel}">
+            <client:ClientListView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type reserv:ReservationListViewModel}">
+            <reserv:ReservationListView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type book:BookListViewModel}">
+            <book:BookListView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type reserv:AddReservationViewModel}">
+            <reserv:AddReservationView/>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid x:Name="NavBar">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Content="Klienci"
+                    Command="{Binding NavCommand}"
+                    CommandParameter="clientList"
+                    Grid.Column="0"/>
+            <Button Content="Książki"
+                    Command="{Binding NavCommand}"
+                    CommandParameter="bookList"
+                    Grid.Column="1"/>
+            <Button Content="Wypożyczenia"
+                    Command="{Binding NavCommand}"
+                    CommandParameter="reservationList"
+                    Grid.Column="2"/>
+        </Grid>
+        <Grid x:Name="MainContent"
+              Grid.Row="1" >
+            <ContentControl Content="{Binding CurrentViewModel}"/>
+        </Grid>
     </Grid>
 </Window>

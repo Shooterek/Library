@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryDesktop", "Library\LibraryDesktop.csproj", "{7F316190-3B8F-42A2-A204-991E35F2E761}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.Desktop", "Library\Library.Desktop.csproj", "{7F316190-3B8F-42A2-A204-991E35F2E761}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.Data", "Library.Data\Library.Data.csproj", "{28549B92-62BE-4425-BD70-C410677E83AC}"
 EndProject

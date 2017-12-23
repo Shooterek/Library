@@ -64,12 +64,35 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BindableBase.cs" />
+    <Compile Include="Books\BookListView.xaml.cs">
+      <DependentUpon>BookListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Books\BookListViewModel.cs" />
+    <Compile Include="Clients\ClientListView.xaml.cs">
+      <DependentUpon>ClientListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Clients\ClientListViewModel.cs" />
+    <Compile Include="MainWindowViewModel.cs" />
+    <Compile Include="RelayCommand.cs" />
+    <Compile Include="Reservations\ReservationListView.xaml.cs">
+      <DependentUpon>ReservationListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Reservations\ReservationListViewModel.cs" />
     <Compile Include="Services\EfBooksRepository.cs" />
     <Compile Include="Services\EfClientsRepository.cs" />
     <Compile Include="Services\EfReservationsRepository.cs" />
     <Compile Include="Services\IBooksRepository.cs" />
     <Compile Include="Services\IClientsRepository.cs" />
     <Compile Include="Services\IReservationsRepository.cs" />
+    <Page Include="Books\BookListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Clients\ClientListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -82,6 +105,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Reservations\ReservationListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -116,6 +143,9 @@
       <Project>{28549b92-62be-4425-bd70-c410677e83ac}</Project>
       <Name>Library.Data</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Categories\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

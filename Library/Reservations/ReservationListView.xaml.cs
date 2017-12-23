@@ -12,18 +12,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Library.Services;
 
-namespace Library
+namespace Library.Reservations
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ReservationListView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ReservationListView : UserControl
     {
-        public MainWindow()
+        public ReservationListView()
         {
-            DataContext = new MainWindowViewModel();
             InitializeComponent();
         }
     }

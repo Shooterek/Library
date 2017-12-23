@@ -12,18 +12,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Library.Services;
 
-namespace Library
+namespace Library.Clients
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ClientListView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ClientListView : UserControl
     {
-        public MainWindow()
+        public ClientListView()
         {
-            DataContext = new MainWindowViewModel();
             InitializeComponent();
         }
     }

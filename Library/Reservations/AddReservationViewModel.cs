@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
 using Library.Data;
@@ -14,21 +15,34 @@ namespace Library.Reservations
         private EfReservationsRepository _reservationsRepository = new EfReservationsRepository();
         private EfBooksRepository _booksRepository = new EfBooksRepository();
 
+
         public AddReservationViewModel()
         {
-            FindBook = new RelayCommand<string>(GetBook);
             AddReservation = new RelayCommand<int>(BookABook);
+            LoadBooksCommand = new RelayCommand(LoadBooks);
+            ClearSearchInputCommand = new RelayCommand(ClearSearchInput);
         }
 
-        private void BookABook(int bookId)
+        private void ClearSearchInput()
         {
-            var reservation = new Reservation{BookId = bookId, ClientId = ClientId, ReservationDate = DateTime.Now};
-            _reservationsRepository.AddReservation(reservation);
+            SearchInput = null;
         }
 
-        private void GetBook(string bookTitle)
+        public RelayCommand<int> AddReservation { get; set; }
+        public RelayCommand LoadBooksCommand { get; set; }
+        public RelayCommand ClearSearchInputCommand { get; set; }
+
+        private List<Book> _allBooks;
+        private string _searchInput;
+
+        public string SearchInput
         {
-            Books = new ObservableCollection<Book>(_booksRepository.GetBooksByTitle(bookTitle));
+            get { return _searchInput; }
+            set
+            {
+                SetProperty(ref _searchInput, value);
+                FilterBooks(_searchInput);
+            }
         }
 
         private int _clientId;
@@ -42,14 +56,34 @@ namespace Library.Reservations
         }
 
         private ObservableCollection<Book> _books;
-
         public ObservableCollection<Book> Books
         {
-            get { return _books;}
-            set { SetProperty(ref _books, value);}
+            get { return _books; }
+            set { SetProperty(ref _books, value); }
         }
 
-        public RelayCommand<string> FindBook { get; set; }
-        public RelayCommand<int> AddReservation { get; set; }
+        private void LoadBooks()
+        {
+            _allBooks = _booksRepository.GetBooks();
+            Books = new ObservableCollection<Book>(_allBooks);
+        }
+
+        private void BookABook(int bookId)
+        {
+            var reservation = new Reservation { BookId = bookId, ClientId = ClientId, ReservationDate = DateTime.Now };
+            _reservationsRepository.AddReservation(reservation);
+        }
+
+        private void FilterBooks(string searchInput)
+        {
+            if (string.IsNullOrWhiteSpace(searchInput))
+            {
+                Books = new ObservableCollection<Book>(_allBooks);
+            }
+            else
+            {
+                Books = new ObservableCollection<Book>(_allBooks.Where(c => c.Title.ToLower().Contains(searchInput)));
+            }
+        }
     }
 }

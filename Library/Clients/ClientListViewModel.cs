@@ -17,11 +17,18 @@ namespace Library.Clients
             PlaceReservationCommand = new RelayCommand<Client>(AddReservation);
             AddClientCommand = new RelayCommand(AddClient);
             LoadClientsCommand = new RelayCommand(LoadClients);
+            ClearSearchInputCommand = new RelayCommand(ClearSearchInput);
+        }
+
+        private void ClearSearchInput()
+        {
+            SearchInput = null;
         }
 
         private void LoadClients()
         {
-            Clients = new ObservableCollection<Client>(_repo.GetClients());
+            _allClients = _repo.GetClients();
+            Clients = new ObservableCollection<Client>(_allClients);
         }
 
         private void AddClient()
@@ -36,16 +43,46 @@ namespace Library.Clients
         public RelayCommand<Client> PlaceReservationCommand { get; set; }
         public RelayCommand AddClientCommand { get; set; }
         public RelayCommand LoadClientsCommand { get; set; }
+        public RelayCommand ClearSearchInputCommand { get; set; }
+        private List<Client> _allClients;
         public ObservableCollection<Client> Clients
         {
             get { return _clients; }
-            set { SetProperty(ref _clients, value);}
+            set
+            {
+                SetProperty(ref _clients, value);
+            }
+        }
+
+        private string _searchInput;
+
+        public string SearchInput
+        {
+            get { return _searchInput; }
+            set
+            {
+                SetProperty(ref _searchInput, value);
+                FilterClients(_searchInput);
+            }
+        }
+
+        private void FilterClients(string searchInput)
+        {
+            if (string.IsNullOrWhiteSpace(searchInput))
+            {
+                Clients = new ObservableCollection<Client>(_allClients);
+            }
+            else
+            {
+                Clients = new ObservableCollection<Client>(_allClients.Where(c => c.LastName.ToLower().Contains(searchInput)));
+            }
         }
 
         private void AddReservation(Client client)
         {
             PlaceReservationRequested(client.ClientId);
         }
+
 
     }
 }

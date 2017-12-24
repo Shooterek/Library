@@ -21,6 +21,16 @@
             <Button Content="Dodaj użytkownika"
                     Command="{Binding AddClientCommand}"
                     HorizontalAlignment="Left"/>
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Grid.Column="2">
+                <Label Content="Wyszukaj"
+                       Width="Auto"/>
+                <TextBox Text="{Binding SearchInput, UpdateSourceTrigger=PropertyChanged}"
+                         Width="100"/>
+                <Button Content="X" 
+                    Command="{Binding ClearSearchInputCommand}"/>
+            </StackPanel>
         </Grid>
         <DataGrid ItemsSource="{Binding Clients}"
                   AutoGenerateColumns="False"
@@ -37,8 +47,16 @@
                         <DataTemplate>
                             <Button Content="Dodaj wypożyczenie"
                                     Command="{Binding DataContext.PlaceReservationCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
-                                    CommandParameter="{Binding}"
-                                />
+                                    CommandParameter="{Binding}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Edytuj"
+                                    Command="{Binding DataContext.EditClientCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                    CommandParameter="{Binding}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

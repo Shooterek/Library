@@ -3,9 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              xmlns:local="clr-namespace:Library.Reservations"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadBooksCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
@@ -16,12 +22,15 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <TextBox x:Name="BookTitle"
-            Grid.Column="0"/>
-        <Button Grid.Column="1"
-                Command="{Binding FindBook}"
-                CommandParameter="{Binding Text, ElementName=BookTitle}"
-                Content="Wyszukaj książkę"/>
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Grid.Column="2">
+            <Label Content="Wyszukaj"/>
+            <TextBox Text="{Binding SearchInput, UpdateSourceTrigger=PropertyChanged}"
+                     Width="100"/>
+            <Button Content="X" 
+                    Command="{Binding ClearSearchInputCommand}"/>
+        </StackPanel>
         <DataGrid ItemsSource="{Binding Books}"
                   AutoGenerateColumns="False"
                   CanUserAddRows="False"

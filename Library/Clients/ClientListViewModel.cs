@@ -16,11 +16,20 @@ namespace Library.Clients
         {
             Clients = new ObservableCollection<Client>(_repo.GetClients());
             PlaceReservation = new RelayCommand<Client>(AddReservation);
+            AddClientCommand = new RelayCommand(AddClient);
         }
+
+        private void AddClient()
+        {
+            AddClientCommandRequested();
+        }
+
         private ObservableCollection<Client> _clients;
 
         public event Action<int> PlaceReservationRequested = delegate { };
+        public event Action AddClientCommandRequested = delegate { };
         public RelayCommand<Client> PlaceReservation { get; set; }
+        public RelayCommand AddClientCommand { get; set; }
         public ObservableCollection<Client> Clients
         {
             get { return _clients; }

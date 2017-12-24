@@ -77,6 +77,10 @@
       <DependentUpon>BookListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Books\BookListViewModel.cs" />
+    <Compile Include="Clients\AddEditClientView.xaml.cs">
+      <DependentUpon>AddEditClientView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Clients\AddEditClientViewModel.cs" />
     <Compile Include="Clients\ClientListView.xaml.cs">
       <DependentUpon>ClientListView.xaml</DependentUpon>
     </Compile>
@@ -98,6 +102,10 @@
     <Compile Include="Services\IClientsRepository.cs" />
     <Compile Include="Services\IReservationsRepository.cs" />
     <Page Include="Books\BookListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Clients\AddEditClientView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -145,6 +153,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Library.Data.Client.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

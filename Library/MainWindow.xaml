@@ -25,6 +25,9 @@
         <DataTemplate DataType="{x:Type reserv:AddReservationViewModel}">
             <reserv:AddReservationView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type client:AddEditClientViewModel}">
+            <client:AddEditClientView/>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>

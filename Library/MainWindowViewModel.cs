@@ -15,13 +15,14 @@ namespace Library
         {
             NavCommand = new RelayCommand<string>(OnNav);
             _clientListViewModel.PlaceReservationRequested += BookABook;
+            _clientListViewModel.AddClientCommandRequested += AddClient;
         }
-
 
         private ClientListViewModel _clientListViewModel = new ClientListViewModel();
         private BookListViewModel _bookListViewModel = new BookListViewModel();
         private ReservationListViewModel _reservationListViewModel = new ReservationListViewModel();
         private AddReservationViewModel _addReservationViewModel = new AddReservationViewModel();
+        private AddEditClientViewModel _addEditClientViewModel = new AddEditClientViewModel();
 
         private BindableBase _currentViewModel;
 
@@ -53,6 +54,10 @@ namespace Library
         {
             _addReservationViewModel.ClientId = clientId;
             CurrentViewModel = _addReservationViewModel;
+        }
+        private void AddClient()
+        {
+            CurrentViewModel = _addEditClientViewModel;
         }
     }
 }

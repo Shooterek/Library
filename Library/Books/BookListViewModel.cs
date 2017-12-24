@@ -11,13 +11,19 @@ namespace Library.Books
 {
     public class BookListViewModel : BindableBase
     {
+        private EfBooksRepository _repo = new EfBooksRepository();
+
         public BookListViewModel()
+        {
+            LoadBooksCommand = new RelayCommand(LoadBooks);
+        }
+
+        private void LoadBooks()
         {
             Books = new ObservableCollection<Book>(_repo.GetBooks());
         }
-        private EfBooksRepository _repo = new EfBooksRepository();
-        private ObservableCollection<Book> _books;
 
+        private ObservableCollection<Book> _books;
         public ObservableCollection<Book> Books
         {
             get { return _books; }
@@ -26,5 +32,7 @@ namespace Library.Books
                 SetProperty(ref _books, value);
             }
         }
+
+        public RelayCommand LoadBooksCommand { get; set; }
     }
 }

@@ -3,9 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              x:Class="Library.Clients.ClientListView"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadClientsCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -19,7 +25,8 @@
         <DataGrid ItemsSource="{Binding Clients}"
                   AutoGenerateColumns="False"
                   CanUserAddRows="False"
-                  Grid.Row="1">
+                  Grid.Row="1"
+                  IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding FirstName}"
                                     Width="*"/>
@@ -29,7 +36,7 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Content="Dodaj wypożyczenie"
-                                    Command="{Binding DataContext.PlaceReservation, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                    Command="{Binding DataContext.PlaceReservationCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
                                     CommandParameter="{Binding}"
                                 />
                         </DataTemplate>

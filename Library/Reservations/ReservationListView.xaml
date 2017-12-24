@@ -15,7 +15,8 @@
     <Grid>
         <DataGrid ItemsSource="{Binding Reservations}"
                   AutoGenerateColumns="False"
-                  Grid.Row="1">
+                  Grid.Row="1"
+                  IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding BookId}"
                                     Width="*"/>

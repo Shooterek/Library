@@ -14,9 +14,14 @@ namespace Library.Clients
         private EfClientsRepository _repo = new EfClientsRepository();
         public ClientListViewModel()
         {
-            Clients = new ObservableCollection<Client>(_repo.GetClients());
-            PlaceReservation = new RelayCommand<Client>(AddReservation);
+            PlaceReservationCommand = new RelayCommand<Client>(AddReservation);
             AddClientCommand = new RelayCommand(AddClient);
+            LoadClientsCommand = new RelayCommand(LoadClients);
+        }
+
+        private void LoadClients()
+        {
+            Clients = new ObservableCollection<Client>(_repo.GetClients());
         }
 
         private void AddClient()
@@ -28,8 +33,9 @@ namespace Library.Clients
 
         public event Action<int> PlaceReservationRequested = delegate { };
         public event Action AddClientCommandRequested = delegate { };
-        public RelayCommand<Client> PlaceReservation { get; set; }
+        public RelayCommand<Client> PlaceReservationCommand { get; set; }
         public RelayCommand AddClientCommand { get; set; }
+        public RelayCommand LoadClientsCommand { get; set; }
         public ObservableCollection<Client> Clients
         {
             get { return _clients; }

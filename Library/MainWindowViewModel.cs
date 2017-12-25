@@ -91,6 +91,12 @@ namespace Library
             CurrentViewModel = _addEditBookViewModel; ;
         }
 
+        private void NavToBookABook(int clientId)
+        {
+            _addReservationViewModel.ClientId = clientId;
+            CurrentViewModel = _addReservationViewModel;
+        }
+
         private void OnNav(string destination)
         {
             switch (destination)
@@ -105,12 +111,6 @@ namespace Library
                     CurrentViewModel = _reservationListViewModel;
                     break;
             }
-        }
-
-        private void NavToBookABook(int clientId)
-        {
-            _addReservationViewModel.ClientId = clientId;
-            CurrentViewModel = _addReservationViewModel;
         }
     }
 }

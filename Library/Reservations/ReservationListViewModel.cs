@@ -23,6 +23,7 @@ namespace Library.Reservations
         private void OnReservationEnd(Reservation reservation)
         {
             _reservationsRepository.DeleteReservation(reservation.ReservationId);
+            Done();
         }
 
         private ObservableCollection<Reservation> _reservations;
@@ -39,5 +40,6 @@ namespace Library.Reservations
 
         public RelayCommand LoadData { get; set; }
         public RelayCommand<Reservation> EndReservationCommand { get; set; }
+        public event Action Done = delegate { };
     }
 }

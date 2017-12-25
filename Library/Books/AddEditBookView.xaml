@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:library="clr-namespace:Library"
+             xmlns:Data="clr-namespace:Library.Data;assembly=Library.Data"
              x:Class="Library.Books.AddEditBookView"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
@@ -13,11 +14,31 @@
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Grid x:Name="grid1" VerticalAlignment="Top" Grid.Row="0" Margin="10,41,0,0" HorizontalAlignment="Left" DataContext="{Binding}">
+        <Grid Grid.Row="1">
+            <Button Content="Dodaj"
+                    Command="{Binding SaveCommand}"
+                    Visibility="{Binding EditMode, Converter={StaticResource NegVisConverter}}"
+                    HorizontalAlignment="Left"
+                    Width="75"
+                    Margin="75,5,0,0"/>
+            <Button Content="Zapisz"
+                    Command="{Binding SaveCommand}"
+                    Visibility="{Binding EditMode, Converter={StaticResource VisConverter}}"
+                    Width="75"
+                    HorizontalAlignment="Left"
+                    Margin="75,5,0,0"/>
+            <Button Content="Anuluj"
+                    Command="{Binding CancelCommand}"
+                    HorizontalAlignment="Left"
+                    Width="75"
+                    Margin="150,5,0,0"/>
+        </Grid>
+        <Grid x:Name="grid1" VerticalAlignment="Top" Margin="11,5,0,0" HorizontalAlignment="Left">
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -50,25 +71,8 @@
             <TextBox x:Name="publisherTextBox" Width="120" VerticalAlignment="Center" Text="{Binding Book.Publisher, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="5" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
             <Label VerticalAlignment="Center" Grid.Row="6" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Opis:"/>
             <TextBox x:Name="specificationTextBox" Width="120" VerticalAlignment="Center" Text="{Binding Book.Specification, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="6" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
-        </Grid>
-        <Grid Grid.Row="1">
-            <Button Content="Dodaj"
-                    Command="{Binding SaveCommand}"
-                    Visibility="{Binding EditMode, Converter={StaticResource NegVisConverter}}"
-                    HorizontalAlignment="Left"
-                    Width="75"
-                    Margin="75,5,0,0"/>
-            <Button Content="Zapisz"
-                    Command="{Binding SaveCommand}"
-                    Visibility="{Binding EditMode, Converter={StaticResource VisConverter}}"
-                    Width="75"
-                    HorizontalAlignment="Left"
-                    Margin="75,5,0,0"/>
-            <Button Content="Anuluj"
-                    Command="{Binding CancelCommand}"
-                    HorizontalAlignment="Left"
-                    Width="75"
-                    Margin="150,5,0,0"/>
+            <Label VerticalAlignment="Center" Grid.Row="7" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Rok wydania:"/>
+            <TextBox x:Name="releaseDateTextBox" Width="120" VerticalAlignment="Center" Text="{Binding Book.ReleaseDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="7" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
         </Grid>
     </Grid>
 </UserControl>

@@ -23,31 +23,6 @@ namespace Library.Books
             CancelCommand = new RelayCommand(OnCancel);
         }
 
-        private void OnCancel()
-        {
-            Done();
-        }
-
-        private void OnSave()
-        {
-            Book.Category = SelectedCategory;
-            if (EditMode)
-            {
-                _booksRepository.UpdateBook(Book);
-            }
-            else
-            {
-                Book.ReleaseDate = 2017;
-                _booksRepository.AddBook(Book);
-            }
-            Done();
-        }
-
-        private bool CanSave()
-        {
-            return true;
-        }
-
         public RelayCommand SaveCommand { get; set; }
         public RelayCommand CancelCommand { get; set; }
         public event Action Done = delegate { };
@@ -86,6 +61,30 @@ namespace Library.Books
             {
                 SetProperty(ref _categories, value);
             }
+        }
+
+        private void OnCancel()
+        {
+            Done();
+        }
+
+        private void OnSave()
+        {
+            Book.Category = SelectedCategory;
+            if (EditMode)
+            {
+                _booksRepository.UpdateBook(Book);
+            }
+            else
+            {
+                _booksRepository.AddBook(Book);
+            }
+            Done();
+        }
+
+        private bool CanSave()
+        {
+            return true;
         }
     }
 }

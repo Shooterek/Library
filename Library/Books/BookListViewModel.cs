@@ -16,19 +16,12 @@ namespace Library.Books
         public BookListViewModel(IBooksRepository booksRepository)
         {
             _booksRepository = booksRepository;
-            LoadBooksCommand = new RelayCommand(LoadBooks);
-            ClearSearchInputCommand = new RelayCommand(ClearSearchInput);
-            AddBookCommand = new RelayCommand(AddBook);
-            EditBookCommand = new RelayCommand<Book>(EditBook);
+            LoadBooksCommand = new RelayCommand(OnBooksLoad);
+            ClearSearchInputCommand = new RelayCommand(OnClearSearchInput);
+            AddBookCommand = new RelayCommand(OnBookAdd);
+            EditBookCommand = new RelayCommand<Book>(OnBookEdit);
             DeleteBookCommand = new RelayCommand<Book>(OnBookDelete);
         }
-
-        private void OnBookDelete(Book book)
-        {
-            _booksRepository.DeleteBook(book.BookId);
-            Done();
-        }
-
 
         public RelayCommand LoadBooksCommand { get; set; }
         public RelayCommand ClearSearchInputCommand { get; set; }
@@ -39,18 +32,7 @@ namespace Library.Books
         public event Action<Book> EditBookRequested = delegate { };
         public event Action Done = delegate { };
 
-
-        private void AddBook()
-        {
-            AddBookRequested(new Book());
-        }
-
-        private void EditBook(Book book)
-        { 
-            EditBookRequested(book);
-        }
-
-        private void LoadBooks()
+        private void OnBooksLoad()
         {
             _allBooks = _booksRepository.GetBooks();
             Books = new ObservableCollection<Book>(_allBooks);
@@ -88,6 +70,27 @@ namespace Library.Books
             }
         }
 
+        private void OnBookAdd()
+        {
+            AddBookRequested(new Book());
+        }
+
+        private void OnBookEdit(Book book)
+        {
+            EditBookRequested(book);
+        }
+
+        private void OnBookDelete(Book book)
+        {
+            _booksRepository.DeleteBook(book.BookId);
+            Done();
+        }
+
+        private void OnClearSearchInput()
+        {
+            SearchInput = null;
+        }
+
         private void FilterBooks(string searchInput)
         {
             if (string.IsNullOrWhiteSpace(searchInput))
@@ -98,11 +101,6 @@ namespace Library.Books
             {
                 Books = new ObservableCollection<Book>(_allBooks.Where(c => c.Title.ToLower().Contains(searchInput)));
             }
-        }
-
-        private void ClearSearchInput()
-        {
-            SearchInput = null;
         }
     }
 }

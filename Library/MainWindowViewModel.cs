@@ -41,6 +41,7 @@ namespace Library
             _addEditBookViewModel.Done += ReturnToMenu;
             _bookListViewModel.Done += ReturnToMenu;
             _clientListViewModel.Done += ReturnToMenu;
+            _reservationListViewModel.Done += ReturnToMenu;
         }
 
         private void ReturnToMenu()

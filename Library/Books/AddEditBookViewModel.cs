@@ -16,10 +16,30 @@ namespace Library.Books
         public AddEditBookViewModel()
         {
             Categories = new List<Category>(_categoriesRepository.GetCategories());
+            SaveCommand = new RelayCommand(OnSave, CanSave);
+            CancelCommand = new RelayCommand(OnCancel);
         }
 
-        private bool _editMode;
+        private void OnCancel()
+        {
+            Done();
+        }
 
+        private void OnSave()
+        {
+            Done();
+        }
+
+        private bool CanSave()
+        {
+            throw new NotImplementedException();
+        }
+
+        public RelayCommand SaveCommand;
+        public RelayCommand CancelCommand;
+        public event Action Done = delegate { };
+
+        private bool _editMode;
         public bool EditMode
         {
             get { return _editMode; }
@@ -27,7 +47,6 @@ namespace Library.Books
         }
 
         private Book _book = null;
-
         public Book Book
         {
             get { return _book; }
@@ -40,7 +59,6 @@ namespace Library.Books
         }
 
         private Category _selectedCategory = null;
-
         public Category SelectedCategory
         {
             get { return _selectedCategory; }

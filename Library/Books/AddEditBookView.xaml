@@ -23,26 +23,26 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Label VerticalAlignment="Center" Grid.Row="0" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Author:"/>
-            <TextBox x:Name="authorTextBox" Width="120" VerticalAlignment="Center" Text="{Binding Book.Author, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="0" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
-            <Label VerticalAlignment="Center" Grid.Row="1" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Category:"/>
-            <ComboBox x:Name="categoryComboBox" Width="120" VerticalAlignment="Center" Grid.Row="1" Margin="3" ItemsSource="{Binding Categories}" Height="Auto" HorizontalAlignment="Left" DisplayMemberPath="Category1" Grid.Column="1" SelectedValue="{Binding SelectedCategory, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+            <Label VerticalAlignment="Center" Grid.Row="0" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Tytuł:"/>
+            <TextBox x:Name="titleTextBox" Width="120" VerticalAlignment="Center" Text="{Binding Book.Title, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="0" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
+            <Label VerticalAlignment="Center" Grid.Row="1" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Autor:"/>
+            <TextBox x:Name="authorTextBox" Width="120" VerticalAlignment="Center" Text="{Binding Book.Author, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="1" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
+            <Label VerticalAlignment="Center" Grid.Row="2" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Kategoria:"/>
+            <ComboBox x:Name="categoryComboBox" Width="120" VerticalAlignment="Center" Grid.Row="2" Margin="3" ItemsSource="{Binding Categories}" Height="Auto" HorizontalAlignment="Left" DisplayMemberPath="Category1" Grid.Column="1" SelectedValue="{Binding SelectedCategory, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 <ComboBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel/>
                     </ItemsPanelTemplate>
                 </ComboBox.ItemsPanel>
             </ComboBox>
-            <Label VerticalAlignment="Center" Grid.Row="2" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="ISBN:"/>
-            <TextBox x:Name="iSBNTextBox" Width="120" VerticalAlignment="Center" Text="{Binding Book.ISBN, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="2" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
-            <Label VerticalAlignment="Center" Grid.Row="3" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Pages:"/>
-            <TextBox x:Name="pagesTextBox" Width="120" VerticalAlignment="Center" Text="{Binding Book.Pages, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="3" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
-            <Label VerticalAlignment="Center" Grid.Row="4" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Publisher:"/>
-            <TextBox x:Name="publisherTextBox" Width="120" VerticalAlignment="Center" Text="{Binding Book.Publisher, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="4" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
-            <Label VerticalAlignment="Center" Grid.Row="5" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Specification:"/>
-            <TextBox x:Name="specificationTextBox" Width="120" VerticalAlignment="Center" Text="{Binding Book.Specification, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="5" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
-            <Label VerticalAlignment="Center" Grid.Row="6" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Title:"/>
-            <TextBox x:Name="titleTextBox" Width="120" VerticalAlignment="Center" Text="{Binding Book.Title, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="6" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
+            <Label VerticalAlignment="Center" Grid.Row="3" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="ISBN:"/>
+            <TextBox x:Name="iSBNTextBox" Width="120" VerticalAlignment="Center" Text="{Binding Book.ISBN, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="3" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
+            <Label VerticalAlignment="Center" Grid.Row="4" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Ilość stron:"/>
+            <TextBox x:Name="pagesTextBox" Width="120" VerticalAlignment="Center" Text="{Binding Book.Pages, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="4" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
+            <Label VerticalAlignment="Center" Grid.Row="5" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Wydawca:"/>
+            <TextBox x:Name="publisherTextBox" Width="120" VerticalAlignment="Center" Text="{Binding Book.Publisher, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="5" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
+            <Label VerticalAlignment="Center" Grid.Row="6" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Opis:"/>
+            <TextBox x:Name="specificationTextBox" Width="120" VerticalAlignment="Center" Text="{Binding Book.Specification, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="6" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
         </Grid>
 
     </Grid>

@@ -68,7 +68,6 @@ namespace Library.Books
         }
 
         private string _searchInput;
-
         public string SearchInput
         {
             get { return _searchInput; }
@@ -76,6 +75,16 @@ namespace Library.Books
             {
                 SetProperty(ref _searchInput, value);
                 FilterBooks(_searchInput);
+            }
+        }
+
+        private Book _selectedBook;
+        public Book SelectedBook
+        {
+            get { return _selectedBook; }
+            set
+            {
+                SetProperty(ref _selectedBook, value);
             }
         }
 

@@ -4,9 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-             xmlns:local="clr-namespace:Library.Books"
+             xmlns:library="clr-namespace:Library"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <library:IfSelectedToIsEnabledConverter x:Key="EnabledConverter"/>
+    </UserControl.Resources>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding LoadBooksCommand}" />
@@ -16,6 +19,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid>
             <Button HorizontalAlignment="Left"
@@ -34,7 +38,8 @@
         <DataGrid ItemsSource="{Binding Books}"
                   AutoGenerateColumns="False"
                   Grid.Row="1"
-                  IsReadOnly="True">
+                  IsReadOnly="True"
+                  SelectedItem="{Binding SelectedBook}">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Title}"
                                     Width="*"/>
@@ -42,25 +47,19 @@
                                     Width="*"/>
                 <DataGridTextColumn Binding="{Binding Publisher}"
                                     Width="*"/>
-                <DataGridTemplateColumn Width="auto">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Content="Edytuj"
-                                    Command="{Binding DataContext.EditBookCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
-                                    CommandParameter="{Binding}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn Width="auto">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Content="Usuń"
-                                    Command="{Binding DataContext.DeleteBookCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
-                                    CommandParameter="{Binding}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Grid.Row="2">
+            <Button Content="Edytuj"
+                    Command="{Binding EditBookCommand}"
+                    CommandParameter="{Binding SelectedBook}"
+                    IsEnabled="{Binding SelectedBook, Converter={StaticResource EnabledConverter}}"/>
+            <Button Content="Usuń"
+                    Command="{Binding DeleteBookCommand}"
+                    CommandParameter="{Binding SelectedBook}"
+                    IsEnabled="{Binding SelectedBook, Converter={StaticResource EnabledConverter}}"/>
+        </StackPanel>
     </Grid>
 </UserControl>

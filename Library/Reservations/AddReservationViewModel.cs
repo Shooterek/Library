@@ -31,6 +31,7 @@ namespace Library.Reservations
         public RelayCommand<int> AddReservation { get; set; }
         public RelayCommand LoadBooksCommand { get; set; }
         public RelayCommand ClearSearchInputCommand { get; set; }
+        public event Action Done = delegate { };
 
         private List<Book> _allBooks;
         private string _searchInput;
@@ -72,6 +73,7 @@ namespace Library.Reservations
         {
             var reservation = new Reservation { BookId = bookId, ClientId = ClientId, ReservationDate = DateTime.Now };
             _reservationsRepository.AddReservation(reservation);
+            Done();
         }
 
         private void FilterBooks(string searchInput)

@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Library.Data;
+using Library.Services;
 
 namespace Library.Clients
 {
     public class AddEditClientViewModel : BindableBase
     {
+        IClientsRepository _clientsRepository = new EfClientsRepository();
         public AddEditClientViewModel()
         {
             SaveCommand = new RelayCommand(OnSave, CanSave);
@@ -30,7 +32,10 @@ namespace Library.Clients
         public Client Client
         {
             get { return _client; }
-            set { SetProperty(ref _client, value); }
+            set
+            {
+                SetProperty(ref _client, value);
+            }
         }
 
         private void OnCancel()
@@ -40,12 +45,20 @@ namespace Library.Clients
 
         private void OnSave()
         {
+            if (EditMode)
+            {
+                _clientsRepository.UpdateClient(Client);
+            }
+            else
+            {
+                _clientsRepository.AddClient(Client);
+            }
             Done();
         }
 
         private bool CanSave()
         {
-            throw new NotImplementedException();
+            return true;
         }
 
     }

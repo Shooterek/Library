@@ -81,6 +81,7 @@
       <DependentUpon>BookListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Books\BookListViewModel.cs" />
+    <Compile Include="CharToSelectedConverter.cs" />
     <Compile Include="Clients\AddEditClientView.xaml.cs">
       <DependentUpon>AddEditClientView.xaml</DependentUpon>
     </Compile>

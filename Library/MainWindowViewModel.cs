@@ -20,7 +20,11 @@ namespace Library
             _clientListViewModel.EditClientRequested += NavToEditClient;
             _bookListViewModel.EditBookRequested += NavToEditBook;
             _bookListViewModel.AddBookRequested += NavToAddBook;
+//            _addEditClientViewModel.Done += ReturnToMenu;
+//            _addReservationViewModel.Done += ReturnToMenu;
+//            _addEditBookViewModel.Done += ReturnToMenu;
         }
+
 
         private void NavToEditClient(Client client)
         {

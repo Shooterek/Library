@@ -35,8 +35,8 @@ namespace Library.Books
             throw new NotImplementedException();
         }
 
-        public RelayCommand SaveCommand;
-        public RelayCommand CancelCommand;
+        public RelayCommand SaveCommand { get; set; }
+        public RelayCommand CancelCommand { get; set; }
         public event Action Done = delegate { };
 
         private bool _editMode;

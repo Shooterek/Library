@@ -18,6 +18,12 @@ namespace Library.Clients
             AddClientCommand = new RelayCommand(AddClient);
             LoadClientsCommand = new RelayCommand(LoadClients);
             ClearSearchInputCommand = new RelayCommand(ClearSearchInput);
+            EditClientCommand = new RelayCommand<Client>(OnClientEdit);
+        }
+
+        private void OnClientEdit(Client client)
+        {
+            EditClientRequested(client);
         }
 
         private void ClearSearchInput()
@@ -33,17 +39,19 @@ namespace Library.Clients
 
         private void AddClient()
         {
-            AddClientRequested();
+            AddClientRequested(new Client());
         }
 
         private ObservableCollection<Client> _clients;
 
         public event Action<int> PlaceReservationRequested = delegate { };
-        public event Action AddClientRequested = delegate { };
+        public event Action<Client> AddClientRequested = delegate { };
+        public event Action<Client> EditClientRequested = delegate { };
         public RelayCommand<Client> PlaceReservationCommand { get; set; }
         public RelayCommand AddClientCommand { get; set; }
         public RelayCommand LoadClientsCommand { get; set; }
         public RelayCommand ClearSearchInputCommand { get; set; }
+        public RelayCommand<Client> EditClientCommand{ get; set; }
         private List<Client> _allClients;
         public ObservableCollection<Client> Clients
         {

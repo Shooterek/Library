@@ -28,6 +28,9 @@
         <DataTemplate DataType="{x:Type client:AddEditClientViewModel}">
             <client:AddEditClientView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type book:AddEditBookViewModel}">
+            <book:AddEditBookView/>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>

@@ -73,6 +73,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="BindableBase.cs" />
+    <Compile Include="Books\AddEditBookView.xaml.cs">
+      <DependentUpon>AddEditBookView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Books\AddEditBookViewModel.cs" />
     <Compile Include="Books\BookListView.xaml.cs">
       <DependentUpon>BookListView.xaml</DependentUpon>
     </Compile>
@@ -96,11 +100,17 @@
     </Compile>
     <Compile Include="Reservations\ReservationListViewModel.cs" />
     <Compile Include="Services\EfBooksRepository.cs" />
+    <Compile Include="Services\EfCategoriesRepository.cs" />
     <Compile Include="Services\EfClientsRepository.cs" />
     <Compile Include="Services\EfReservationsRepository.cs" />
     <Compile Include="Services\IBooksRepository.cs" />
+    <Compile Include="Services\ICategoriesRepository.cs" />
     <Compile Include="Services\IClientsRepository.cs" />
     <Compile Include="Services\IReservationsRepository.cs" />
+    <Page Include="Books\AddEditBookView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Books\BookListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -153,6 +163,8 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Library.Data.Book.datasource" />
+    <None Include="Properties\DataSources\Library.Data.Category.datasource" />
     <None Include="Properties\DataSources\Library.Data.Client.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

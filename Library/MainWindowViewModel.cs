@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Library.Books;
 using Library.Clients;
+using Library.Data;
 using Library.Reservations;
 
 namespace Library
@@ -14,8 +15,24 @@ namespace Library
         public MainWindowViewModel()
         {
             NavCommand = new RelayCommand<string>(OnNav);
-            _clientListViewModel.PlaceReservationRequested += BookABook;
-            _clientListViewModel.AddClientCommandRequested += AddClient;
+            _clientListViewModel.PlaceReservationRequested += NavToBookABook;
+            _clientListViewModel.AddClientRequested += NavToAddClient;
+            _bookListViewModel.EditBookRequested += NavToEditBook;
+            _bookListViewModel.AddBookRequested += NavToAddBook;
+        }
+
+        private void NavToAddBook(Book book)
+        {
+            _addEditBookViewModel.EditMode = false;
+            _addEditBookViewModel.Book = book;
+            CurrentViewModel = _addEditBookViewModel;
+        }
+
+        private void NavToEditBook(Book book)
+        {
+            _addEditBookViewModel.EditMode = true;
+            _addEditBookViewModel.Book = book;
+            CurrentViewModel = _addEditBookViewModel; ;
         }
 
         private ClientListViewModel _clientListViewModel = new ClientListViewModel();
@@ -23,6 +40,7 @@ namespace Library
         private ReservationListViewModel _reservationListViewModel = new ReservationListViewModel();
         private AddReservationViewModel _addReservationViewModel = new AddReservationViewModel();
         private AddEditClientViewModel _addEditClientViewModel = new AddEditClientViewModel();
+        private AddEditBookViewModel _addEditBookViewModel = new AddEditBookViewModel();
 
         private BindableBase _currentViewModel;
 
@@ -50,12 +68,12 @@ namespace Library
             }
         }
 
-        private void BookABook(int clientId)
+        private void NavToBookABook(int clientId)
         {
             _addReservationViewModel.ClientId = clientId;
             CurrentViewModel = _addReservationViewModel;
         }
-        private void AddClient()
+        private void NavToAddClient()
         {
             CurrentViewModel = _addEditClientViewModel;
         }

@@ -17,6 +17,27 @@ namespace Library.Books
         {
             LoadBooksCommand = new RelayCommand(LoadBooks);
             ClearSearchInputCommand = new RelayCommand(ClearSearchInput);
+            AddBookCommand = new RelayCommand(AddBook);
+            EditBookCommand = new RelayCommand<Book>(EditBook);
+        }
+
+
+        public RelayCommand LoadBooksCommand { get; set; }
+        public RelayCommand ClearSearchInputCommand { get; set; }
+        public RelayCommand<Book> EditBookCommand { get; set; }
+        public RelayCommand AddBookCommand { get; set; }
+        public event Action<Book> AddBookRequested = delegate { };
+        public event Action<Book> EditBookRequested = delegate { };
+
+
+        private void AddBook()
+        {
+            AddBookRequested(new Book());
+        }
+
+        private void EditBook(Book book)
+        { 
+            EditBookRequested(book);
         }
 
         private void LoadBooks()
@@ -64,8 +85,5 @@ namespace Library.Books
         {
             SearchInput = null;
         }
-
-        public RelayCommand LoadBooksCommand { get; set; }
-        public RelayCommand ClearSearchInputCommand { get; set; }
     }
 }

@@ -33,13 +33,13 @@ namespace Library.Clients
 
         private void AddClient()
         {
-            AddClientCommandRequested();
+            AddClientRequested();
         }
 
         private ObservableCollection<Client> _clients;
 
         public event Action<int> PlaceReservationRequested = delegate { };
-        public event Action AddClientCommandRequested = delegate { };
+        public event Action AddClientRequested = delegate { };
         public RelayCommand<Client> PlaceReservationCommand { get; set; }
         public RelayCommand AddClientCommand { get; set; }
         public RelayCommand LoadClientsCommand { get; set; }

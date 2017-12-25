@@ -20,6 +20,7 @@ namespace Library.Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            Configuration.LazyLoadingEnabled = false;
             modelBuilder.Entity<Book>()
                 .Property(e => e.ISBN)
                 .IsUnicode(false);

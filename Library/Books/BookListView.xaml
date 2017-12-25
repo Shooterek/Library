@@ -18,6 +18,9 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid>
+            <Button HorizontalAlignment="Left"
+                    Content="Dodaj książkę"
+                    Command="{Binding AddBookCommand}"/>
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Right"
                         Grid.Column="2">

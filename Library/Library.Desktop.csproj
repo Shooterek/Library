@@ -90,6 +90,7 @@
       <DependentUpon>ClientListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Clients\ClientListViewModel.cs" />
+    <Compile Include="EditableClient.cs" />
     <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="NegatableBooleanToVisibilityConverter.cs" />
     <Compile Include="RelayCommand.cs" />

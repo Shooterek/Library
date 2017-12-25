@@ -36,7 +36,7 @@ namespace Library
         private void NavToAddClient(Client client)
         {
             _addEditClientViewModel.Client = client;
-            _addEditClientViewModel.EditMode = true;
+            _addEditClientViewModel.EditMode = false;
             CurrentViewModel = _addEditClientViewModel;
         }
 

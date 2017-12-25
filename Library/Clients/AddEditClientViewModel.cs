@@ -17,8 +17,8 @@ namespace Library.Clients
             CancelCommand = new RelayCommand(OnCancel);
         }
 
-        public RelayCommand SaveCommand;
-        public RelayCommand CancelCommand;
+        public RelayCommand SaveCommand { get; set; }
+        public RelayCommand CancelCommand { get; set; }
         public event Action Done = delegate { };
 
         private bool _editMode;

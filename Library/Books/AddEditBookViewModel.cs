@@ -32,7 +32,7 @@ namespace Library.Books
 
         private bool CanSave()
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         public RelayCommand SaveCommand { get; set; }

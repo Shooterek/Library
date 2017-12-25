@@ -15,7 +15,6 @@ namespace Library.Reservations
         private EfReservationsRepository _reservationsRepository = new EfReservationsRepository();
         private EfBooksRepository _booksRepository = new EfBooksRepository();
 
-
         public AddReservationViewModel()
         {
             AddReservation = new RelayCommand<int>(BookABook);

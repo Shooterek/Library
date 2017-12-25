@@ -17,8 +17,23 @@ namespace Library
             NavCommand = new RelayCommand<string>(OnNav);
             _clientListViewModel.PlaceReservationRequested += NavToBookABook;
             _clientListViewModel.AddClientRequested += NavToAddClient;
+            _clientListViewModel.EditClientRequested += NavToEditClient;
             _bookListViewModel.EditBookRequested += NavToEditBook;
             _bookListViewModel.AddBookRequested += NavToAddBook;
+        }
+
+        private void NavToEditClient(Client client)
+        {
+            _addEditClientViewModel.Client = client;
+            _addEditClientViewModel.EditMode = true;
+            CurrentViewModel = _addEditClientViewModel;
+        }
+
+        private void NavToAddClient(Client client)
+        {
+            _addEditClientViewModel.Client = client;
+            _addEditClientViewModel.EditMode = true;
+            CurrentViewModel = _addEditClientViewModel;
         }
 
         private void NavToAddBook(Book book)
@@ -72,10 +87,6 @@ namespace Library
         {
             _addReservationViewModel.ClientId = clientId;
             CurrentViewModel = _addReservationViewModel;
-        }
-        private void NavToAddClient()
-        {
-            CurrentViewModel = _addEditClientViewModel;
         }
     }
 }

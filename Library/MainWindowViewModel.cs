@@ -13,6 +13,13 @@ namespace Library
 {
     public class MainWindowViewModel : BindableBase
     {
+        private ClientListViewModel _clientListViewModel;
+        private BookListViewModel _bookListViewModel;
+        private ReservationListViewModel _reservationListViewModel;
+        private AddReservationViewModel _addReservationViewModel;
+        private AddEditClientViewModel _addEditClientViewModel;
+        private AddEditBookViewModel _addEditBookViewModel;
+        public RelayCommand<string> NavCommand { get; set; }
         public MainWindowViewModel()
         {
             LibraryDbContext dbContext = new LibraryDbContext();
@@ -44,11 +51,17 @@ namespace Library
             _reservationListViewModel.Done += ReturnToMenu;
         }
 
+        private BindableBase _currentViewModel;
+        public BindableBase CurrentViewModel
+        {
+            get { return _currentViewModel; }
+            set { SetProperty(ref _currentViewModel, value); }
+        }
+
         private void ReturnToMenu()
         {
             CurrentViewModel = _clientListViewModel;
         }
-
 
         private void NavToEditClient(Client client)
         {
@@ -76,23 +89,6 @@ namespace Library
             _addEditBookViewModel.EditMode = true;
             _addEditBookViewModel.Book = book;
             CurrentViewModel = _addEditBookViewModel; ;
-        }
-
-        private ClientListViewModel _clientListViewModel;
-        private BookListViewModel _bookListViewModel;
-        private ReservationListViewModel _reservationListViewModel;
-        private AddReservationViewModel _addReservationViewModel;
-        private AddEditClientViewModel _addEditClientViewModel;
-        private AddEditBookViewModel _addEditBookViewModel;
-
-        private BindableBase _currentViewModel;
-
-        public RelayCommand<string> NavCommand { get; set; }
-
-        public BindableBase CurrentViewModel
-        {
-            get { return _currentViewModel; }
-            set { SetProperty(ref _currentViewModel, value); }
         }
 
         private void OnNav(string destination)

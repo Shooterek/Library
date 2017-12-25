@@ -19,14 +19,9 @@ namespace Library.Reservations
         {
             _reservationsRepository = reservationsRepository;
             _booksRepository = booksRepository;
-            AddReservation = new RelayCommand<int>(BookABook, CanBook);
+            AddReservation = new RelayCommand<int>(BookABook);
             LoadBooksCommand = new RelayCommand(LoadBooks);
             ClearSearchInputCommand = new RelayCommand(ClearSearchInput);
-        }
-
-        private bool CanBook(int arg)
-        {
-            return true;
         }
 
         private void ClearSearchInput()

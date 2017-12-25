@@ -4,9 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:library="clr-namespace:Library"
              x:Class="Library.Clients.ClientListView"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <library:IfSelectedToIsEnabledConverter x:Key="EnabledConverter"/>
+    </UserControl.Resources>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding LoadClientsCommand}" />
@@ -37,52 +41,30 @@
                   AutoGenerateColumns="False"
                   CanUserAddRows="False"
                   Grid.Row="1"
-                  IsReadOnly="True">
+                  IsReadOnly="True"
+                  SelectedItem="{Binding SelectedClient}">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding FirstName}"
                                     Width="*"/>
                 <DataGridTextColumn Binding="{Binding LastName}"
                                     Width="*"/>
-                <DataGridTemplateColumn Width="auto">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Content="Dodaj wypożyczenie"
-                                    Command="{Binding DataContext.PlaceReservationCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
-                                    CommandParameter="{Binding}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn Width="auto">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Content="Edytuj"
-                                    Command="{Binding DataContext.EditClientCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
-                                    CommandParameter="{Binding}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn Width="auto">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Content="Usuń"
-                                    Command="{Binding DataContext.DeleteClientCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
-                                    CommandParameter="{Binding}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Right"
             Grid.Row="2">
             <Button Content="Dodaj wypożyczenie"
-                    Command="{Binding DataContext.PlaceReservationCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
-                    CommandParameter="{Binding}"/>
+                    Command="{Binding PlaceReservationCommand}"
+                    CommandParameter="{Binding SelectedClient}"
+                    IsEnabled="{Binding SelectedClient, Converter={StaticResource EnabledConverter}}"/>
             <Button Content="Edytuj"
-                    Command="{Binding DataContext.EditClientCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
-                    CommandParameter="{Binding}"/>
+                    Command="{Binding EditClientCommand}"
+                    CommandParameter="{Binding SelectedClient}"
+                    IsEnabled="{Binding SelectedClient, Converter={StaticResource EnabledConverter}}"/>
             <Button Content="Usuń"
-                    Command="{Binding DataContext.DeleteClientCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
-                    CommandParameter="{Binding}"/>
+                    Command="{Binding DeleteClientCommand}"
+                    CommandParameter="{Binding SelectedClient}"
+                    IsEnabled="{Binding SelectedClient, Converter={StaticResource EnabledConverter}}"/>
         </StackPanel>
     </Grid>
 </UserControl>

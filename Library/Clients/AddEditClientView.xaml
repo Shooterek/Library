@@ -3,8 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Library.Clients"
-             xmlns:Data="clr-namespace:Library.Data;assembly=Library.Data"
              xmlns:library="clr-namespace:Library"
              x:Class="Library.Clients.AddEditClientView"
              mc:Ignorable="d" 
@@ -12,7 +10,7 @@
     <UserControl.Resources>
         <library:NegatableBooleanToVisibilityConverter x:Key="VisConverter" />
         <library:NegatableBooleanToVisibilityConverter x:Key="NegVisConverter" Negate="True" />
-        <library:CharToSelectedConverter x:Key="CharToSelectedConverter"></library:CharToSelectedConverter>
+        <library:CharToSelectedConverter x:Key="CharToSelectedConverter"/>
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>

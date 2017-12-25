@@ -74,8 +74,17 @@ namespace Library.Clients
             }
         }
 
-        private string _searchInput;
+        private Client _selectedClient;
+        public Client SelectedClient
+        {
+            get { return _selectedClient; }
+            set
+            {
+                SetProperty(ref _selectedClient, value);
+            }
+        }
 
+        private string _searchInput;
         public string SearchInput
         {
             get { return _searchInput; }

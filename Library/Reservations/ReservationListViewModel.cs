@@ -16,18 +16,13 @@ namespace Library.Reservations
         public ReservationListViewModel(IReservationsRepository reservationsRepository)
         {
             _reservationsRepository = reservationsRepository;
+            LoadData = new RelayCommand(LoadReservations);
         }
         private ObservableCollection<Reservation> _reservations;
-
         public ObservableCollection<Reservation> Reservations
         {
             get { return _reservations; }
             set { SetProperty(ref _reservations, value);}
-        }
-
-        public ReservationListViewModel()
-        {
-            LoadData = new RelayCommand(LoadReservations);
         }
 
         private void LoadReservations()

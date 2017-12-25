@@ -25,6 +25,7 @@ namespace Library
             _addReservationViewModel = new AddReservationViewModel(_reservationsRepository, _booksRepository);
             _bookListViewModel = new BookListViewModel(_booksRepository);
             _clientListViewModel = new ClientListViewModel(_clientsRepository);
+            _reservationListViewModel = new ReservationListViewModel(_reservationsRepository);
             NavCommand = new RelayCommand<string>(OnNav);
             _clientListViewModel.PlaceReservationRequested += NavToBookABook;
             _clientListViewModel.AddClientRequested += NavToAddClient;
@@ -67,7 +68,7 @@ namespace Library
 
         private ClientListViewModel _clientListViewModel;
         private BookListViewModel _bookListViewModel;
-        private ReservationListViewModel _reservationListViewModel = new ReservationListViewModel();
+        private ReservationListViewModel _reservationListViewModel;
         private AddReservationViewModel _addReservationViewModel;
         private AddEditClientViewModel _addEditClientViewModel;
         private AddEditBookViewModel _addEditBookViewModel;

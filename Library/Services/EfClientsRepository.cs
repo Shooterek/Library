@@ -13,8 +13,12 @@ namespace Library.Services
 {
     public class EfClientsRepository : IClientsRepository
     {
-        private readonly LibraryDbContext _dbContext = new LibraryDbContext();
+        private LibraryDbContext _dbContext;
 
+        public EfClientsRepository(LibraryDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
         public List<Client> GetClients()
         {
             return _dbContext.Clients.ToList();

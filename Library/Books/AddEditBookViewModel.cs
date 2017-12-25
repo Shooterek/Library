@@ -11,10 +11,13 @@ namespace Library.Books
 {
     public class AddEditBookViewModel : BindableBase
     {
-        ICategoriesRepository _categoriesRepository = new EfCategoriesRepository();
+        private ICategoriesRepository _categoriesRepository;
+        private IBooksRepository _booksRepository;
 
-        public AddEditBookViewModel()
+        public AddEditBookViewModel(ICategoriesRepository categoriesRepository, IBooksRepository booksRepository)
         {
+            _booksRepository = booksRepository;
+            _categoriesRepository = categoriesRepository;
             Categories = new List<Category>(_categoriesRepository.GetCategories());
             SaveCommand = new RelayCommand(OnSave, CanSave);
             CancelCommand = new RelayCommand(OnCancel);
@@ -27,6 +30,16 @@ namespace Library.Books
 
         private void OnSave()
         {
+            Book.Category = SelectedCategory;
+            if (EditMode)
+            {
+                _booksRepository.UpdateBook(Book);
+            }
+            else
+            {
+                Book.ReleaseDate = 2017;
+                _booksRepository.AddBook(Book);
+            }
             Done();
         }
 

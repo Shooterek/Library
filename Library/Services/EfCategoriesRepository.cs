@@ -9,7 +9,12 @@ namespace Library.Services
 {
     public class EfCategoriesRepository : ICategoriesRepository
     {
-        private LibraryDbContext _dbContext = new LibraryDbContext();
+        private LibraryDbContext _dbContext;
+
+        public EfCategoriesRepository(LibraryDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
 
         public List<Category> GetCategories()
         {
@@ -18,7 +23,7 @@ namespace Library.Services
 
         public Category GetCategoryById(int id)
         {
-            throw new NotImplementedException();
+            return _dbContext.Categories.SingleOrDefault(c => c.CategoryId == id);
         }
 
         public void AddCategory(Category category)

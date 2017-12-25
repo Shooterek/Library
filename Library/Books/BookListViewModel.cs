@@ -11,10 +11,11 @@ namespace Library.Books
 {
     public class BookListViewModel : BindableBase
     {
-        private EfBooksRepository _repo = new EfBooksRepository();
+        private IBooksRepository _booksRepository;
 
-        public BookListViewModel()
+        public BookListViewModel(IBooksRepository booksRepository)
         {
+            _booksRepository = booksRepository;
             LoadBooksCommand = new RelayCommand(LoadBooks);
             ClearSearchInputCommand = new RelayCommand(ClearSearchInput);
             AddBookCommand = new RelayCommand(AddBook);
@@ -42,7 +43,7 @@ namespace Library.Books
 
         private void LoadBooks()
         {
-            _allBooks = _repo.GetBooks();
+            _allBooks = _booksRepository.GetBooks();
             Books = new ObservableCollection<Book>(_allBooks);
         }
 

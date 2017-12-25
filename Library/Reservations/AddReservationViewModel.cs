@@ -12,11 +12,13 @@ namespace Library.Reservations
 {
     public class AddReservationViewModel : BindableBase
     {
-        private EfReservationsRepository _reservationsRepository = new EfReservationsRepository();
-        private EfBooksRepository _booksRepository = new EfBooksRepository();
+        private IReservationsRepository _reservationsRepository;
+        private IBooksRepository _booksRepository;
 
-        public AddReservationViewModel()
+        public AddReservationViewModel(IReservationsRepository reservationsRepository, IBooksRepository booksRepository)
         {
+            _reservationsRepository = reservationsRepository;
+            _booksRepository = booksRepository;
             AddReservation = new RelayCommand<int>(BookABook);
             LoadBooksCommand = new RelayCommand(LoadBooks);
             ClearSearchInputCommand = new RelayCommand(ClearSearchInput);

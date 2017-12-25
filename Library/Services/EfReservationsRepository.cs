@@ -9,7 +9,13 @@ namespace Library.Services
 {
     public class EfReservationsRepository : IReservationsRepository
     {
-        private readonly LibraryDbContext _dbContext = new LibraryDbContext();
+        private LibraryDbContext _dbContext;
+
+        public EfReservationsRepository(LibraryDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
         public List<Reservation> GetReservations()
         {
             return _dbContext.Reservations.ToList();

@@ -11,9 +11,11 @@ namespace Library.Clients
 {
     public class ClientListViewModel : BindableBase
     {
-        private EfClientsRepository _repo = new EfClientsRepository();
-        public ClientListViewModel()
+        private IClientsRepository _clientsRepository;
+
+        public ClientListViewModel(IClientsRepository clientsRepository)
         {
+            _clientsRepository = clientsRepository;
             PlaceReservationCommand = new RelayCommand<Client>(AddReservation);
             AddClientCommand = new RelayCommand(AddClient);
             LoadClientsCommand = new RelayCommand(LoadClients);
@@ -33,7 +35,7 @@ namespace Library.Clients
 
         private void LoadClients()
         {
-            _allClients = _repo.GetClients();
+            _allClients = _clientsRepository.GetClients();
             Clients = new ObservableCollection<Client>(_allClients);
         }
 

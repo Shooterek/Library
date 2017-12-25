@@ -11,7 +11,12 @@ namespace Library.Reservations
 {
     public class ReservationListViewModel : BindableBase
     {
-        private EfReservationsRepository _repo = new EfReservationsRepository();
+        private IReservationsRepository _reservationsRepository;
+
+        public ReservationListViewModel(IReservationsRepository reservationsRepository)
+        {
+            _reservationsRepository = reservationsRepository;
+        }
         private ObservableCollection<Reservation> _reservations;
 
         public ObservableCollection<Reservation> Reservations
@@ -27,7 +32,7 @@ namespace Library.Reservations
 
         private void LoadReservations()
         {
-            Reservations = new ObservableCollection<Reservation>(_repo.GetReservations());
+            Reservations = new ObservableCollection<Reservation>(_reservationsRepository.GetReservations());
         }
 
         public RelayCommand LoadData { get; set; }

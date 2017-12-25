@@ -10,7 +10,12 @@ namespace Library.Services
 {
     public class EfBooksRepository : IBooksRepository
     {
-        private readonly LibraryDbContext _dbContext = new LibraryDbContext();
+        private LibraryDbContext _dbContext;
+
+        public EfBooksRepository(LibraryDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
         public List<Book> GetBooks()
         {
             return _dbContext.Books.ToList();

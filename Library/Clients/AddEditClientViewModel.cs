@@ -10,9 +10,10 @@ namespace Library.Clients
 {
     public class AddEditClientViewModel : BindableBase
     {
-        IClientsRepository _clientsRepository = new EfClientsRepository();
-        public AddEditClientViewModel()
+        private IClientsRepository _clientsRepository;
+        public AddEditClientViewModel(IClientsRepository clientsRepository)
         {
+            _clientsRepository = clientsRepository;
             SaveCommand = new RelayCommand(OnSave, CanSave);
             CancelCommand = new RelayCommand(OnCancel);
         }

@@ -20,6 +20,13 @@ namespace Library.Books
             ClearSearchInputCommand = new RelayCommand(ClearSearchInput);
             AddBookCommand = new RelayCommand(AddBook);
             EditBookCommand = new RelayCommand<Book>(EditBook);
+            DeleteBookCommand = new RelayCommand<Book>(OnBookDelete);
+        }
+
+        private void OnBookDelete(Book book)
+        {
+            _booksRepository.DeleteBook(book.BookId);
+            Done();
         }
 
 
@@ -27,8 +34,10 @@ namespace Library.Books
         public RelayCommand ClearSearchInputCommand { get; set; }
         public RelayCommand<Book> EditBookCommand { get; set; }
         public RelayCommand AddBookCommand { get; set; }
+        public RelayCommand<Book> DeleteBookCommand { get; set; }
         public event Action<Book> AddBookRequested = delegate { };
         public event Action<Book> EditBookRequested = delegate { };
+        public event Action Done = delegate { };
 
 
         private void AddBook()

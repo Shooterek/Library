@@ -18,7 +18,7 @@ namespace Library.Services
 
         public List<Reservation> GetReservations()
         {
-            return _dbContext.Reservations.ToList();
+            return _dbContext.Reservations.Include("Book").Include("Client").ToList();
         }
 
         public List<Reservation> GetReservationsByClientId(int clientId)
@@ -49,6 +49,7 @@ namespace Library.Services
             if (reservation != null)
             {
                 _dbContext.Reservations.Remove(reservation);
+                _dbContext.SaveChanges();
             }
         }
     }

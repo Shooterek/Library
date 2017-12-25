@@ -14,7 +14,7 @@ namespace Library.Clients
         public AddEditClientViewModel(IClientsRepository clientsRepository)
         {
             _clientsRepository = clientsRepository;
-            SaveCommand = new RelayCommand(OnSave, CanSave);
+            SaveCommand = new RelayCommand(OnSave);
             CancelCommand = new RelayCommand(OnCancel);
         }
 
@@ -55,11 +55,6 @@ namespace Library.Clients
                 _clientsRepository.AddClient(Client);
             }
             Done();
-        }
-
-        private bool CanSave()
-        {
-            return true;
         }
 
     }

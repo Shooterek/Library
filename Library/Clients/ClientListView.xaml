@@ -16,6 +16,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid>
             <Button Content="Dodaj użytkownika"
@@ -60,7 +61,28 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Usuń"
+                                    Command="{Binding DataContext.DeleteClientCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                    CommandParameter="{Binding}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
+        <StackPanel Orientation="Horizontal"
+            Grid.Row="2">
+            <Button Content="Dodaj wypożyczenie"
+                    Command="{Binding DataContext.PlaceReservationCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                    CommandParameter="{Binding}"/>
+            <Button Content="Edytuj"
+                    Command="{Binding DataContext.EditClientCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                    CommandParameter="{Binding}"/>
+            <Button Content="Usuń"
+                    Command="{Binding DataContext.DeleteClientCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                    CommandParameter="{Binding}"/>
+        </StackPanel>
     </Grid>
 </UserControl>

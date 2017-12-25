@@ -18,12 +18,23 @@
                   Grid.Row="1"
                   IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding BookId}"
+                <DataGridTextColumn Binding="{Binding Client.FirstName}"
                                     Width="*"/>
-                <DataGridTextColumn Binding="{Binding ClientId}"
+                <DataGridTextColumn Binding="{Binding Client.LastName}"
+                                    Width="*"/>
+                <DataGridTextColumn Binding="{Binding Book.Title}"
                                     Width="*"/>
                 <DataGridTextColumn Binding="{Binding ReservationDate}"
                                     Width="*"/>
+                <DataGridTemplateColumn Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Zakończ wypożyczenie"
+                                    Command="{Binding DataContext.EndReservationCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                    CommandParameter="{Binding}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

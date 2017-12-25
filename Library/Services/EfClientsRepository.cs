@@ -46,7 +46,8 @@ namespace Library.Services
             var client = _dbContext.Clients.FirstOrDefault(c => c.ClientId == clientId);
             if (client != null)
             {
-                _dbContext.Clients.Remove(client);
+                _dbContext.Entry(client).State = EntityState.Deleted;
+                _dbContext.SaveChanges();
             }
         }
     }

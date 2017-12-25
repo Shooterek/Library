@@ -17,7 +17,14 @@ namespace Library.Reservations
         {
             _reservationsRepository = reservationsRepository;
             LoadData = new RelayCommand(LoadReservations);
+            EndReservationCommand = new RelayCommand<Reservation>(OnReservationEnd);
         }
+
+        private void OnReservationEnd(Reservation reservation)
+        {
+            _reservationsRepository.DeleteReservation(reservation.ReservationId);
+        }
+
         private ObservableCollection<Reservation> _reservations;
         public ObservableCollection<Reservation> Reservations
         {
@@ -31,5 +38,6 @@ namespace Library.Reservations
         }
 
         public RelayCommand LoadData { get; set; }
+        public RelayCommand<Reservation> EndReservationCommand { get; set; }
     }
 }

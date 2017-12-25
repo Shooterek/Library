@@ -16,25 +16,36 @@ namespace Library
         public MainWindowViewModel()
         {
             LibraryDbContext dbContext = new LibraryDbContext();
+
             IClientsRepository _clientsRepository = new EfClientsRepository(dbContext);
             IBooksRepository _booksRepository = new EfBooksRepository(dbContext);
             IReservationsRepository _reservationsRepository = new EfReservationsRepository(dbContext);
             ICategoriesRepository _categoriesRepository = new EfCategoriesRepository(dbContext);
+
             _addEditBookViewModel = new AddEditBookViewModel(_categoriesRepository, _booksRepository);
             _addEditClientViewModel = new AddEditClientViewModel(_clientsRepository);
             _addReservationViewModel = new AddReservationViewModel(_reservationsRepository, _booksRepository);
             _bookListViewModel = new BookListViewModel(_booksRepository);
             _clientListViewModel = new ClientListViewModel(_clientsRepository);
             _reservationListViewModel = new ReservationListViewModel(_reservationsRepository);
+
             NavCommand = new RelayCommand<string>(OnNav);
+
             _clientListViewModel.PlaceReservationRequested += NavToBookABook;
             _clientListViewModel.AddClientRequested += NavToAddClient;
             _clientListViewModel.EditClientRequested += NavToEditClient;
             _bookListViewModel.EditBookRequested += NavToEditBook;
             _bookListViewModel.AddBookRequested += NavToAddBook;
-            //            _addEditClientViewModel.Done += ReturnToMenu;
-            //            _addReservationViewModel.Done += ReturnToMenu;
-            //            _addEditBookViewModel.Done += ReturnToMenu;
+            _addEditClientViewModel.Done += ReturnToMenu;
+            _addReservationViewModel.Done += ReturnToMenu;
+            _addEditBookViewModel.Done += ReturnToMenu;
+            _bookListViewModel.Done += ReturnToMenu;
+            _clientListViewModel.Done += ReturnToMenu;
+        }
+
+        private void ReturnToMenu()
+        {
+            CurrentViewModel = _clientListViewModel;
         }
 
 

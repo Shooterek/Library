@@ -10,7 +10,8 @@ namespace Library.Services
     public interface IBooksRepository
     {
         List<Book> GetBooks();
-        List<Book> GetBooksByTitle(string bookTitle);
+        Book GetBookById(int id);
+        List<BookData> GetBookDataList();
         void UpdateBook(Book book);
         void AddBook(Book book);
         void DeleteBook(int bookId);

@@ -21,9 +21,19 @@ namespace Library.Services
             return _dbContext.Books.ToList();
         }
 
+        public Book GetBookById(int id)
+        {
+            return _dbContext.Books.Single(b => b.BookId == id);
+        }
+
         public List<Book> GetBooksByTitle(string bookTitle)
         {
             return _dbContext.Books.Where(b=>b.Title.Contains(bookTitle)).ToList();
+        }
+
+        public List<BookData> GetBookDataList()
+        {
+            return _dbContext.BookDatas.ToList();
         }
 
         public void UpdateBook(Book book)

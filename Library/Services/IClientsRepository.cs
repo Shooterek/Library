@@ -14,5 +14,6 @@ namespace Library.Services
         void AddClient(Client client);
         void UpdateClient(Client client);
         void DeleteClient(int clientId);
+        List<Reminder> GetReminders();
     }
 }

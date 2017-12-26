@@ -13,6 +13,7 @@ namespace Library.Services
         List<Reservation> GetReservationsByClientId(int clientId);
         Reservation GetReservationById(int reservationId);
         Reservation GetReservationWithClientAndBook(int reservationId);
+        List<Archive> GetArchive();
         void AddReservation(Reservation reservation);
         void DeleteReservation(int reservationId);
     }

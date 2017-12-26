@@ -37,6 +37,11 @@ namespace Library.Services
                 .FirstOrDefault(r => r.ReservationId == reservationId);
         }
 
+        public List<Archive> GetArchive()
+        {
+            return _dbContext.Archives.Include("Book").Include("Client").ToList();
+        }
+
         public void AddReservation(Reservation reservation)
         {
             _dbContext.Reservations.Add(reservation);

@@ -53,11 +53,14 @@
   <ItemGroup>
     <Compile Include="Archive.cs" />
     <Compile Include="Book.cs" />
+    <Compile Include="BookData.cs" />
     <Compile Include="Category.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="LibraryDbContext.cs" />
+    <Compile Include="Number_of_reservation.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reminder.cs" />
     <Compile Include="Reservation.cs" />
   </ItemGroup>
   <ItemGroup>

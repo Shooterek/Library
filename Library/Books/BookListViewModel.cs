@@ -19,28 +19,28 @@ namespace Library.Books
             LoadBooksCommand = new RelayCommand(OnBooksLoad);
             ClearSearchInputCommand = new RelayCommand(OnClearSearchInput);
             AddBookCommand = new RelayCommand(OnBookAdd);
-            EditBookCommand = new RelayCommand<Book>(OnBookEdit);
-            DeleteBookCommand = new RelayCommand<Book>(OnBookDelete);
+            EditBookCommand = new RelayCommand<int>(OnBookEdit);
+            DeleteBookCommand = new RelayCommand<int>(OnBookDelete);
         }
 
         public RelayCommand LoadBooksCommand { get; set; }
         public RelayCommand ClearSearchInputCommand { get; set; }
-        public RelayCommand<Book> EditBookCommand { get; set; }
+        public RelayCommand<int> EditBookCommand { get; set; }
         public RelayCommand AddBookCommand { get; set; }
-        public RelayCommand<Book> DeleteBookCommand { get; set; }
+        public RelayCommand<int> DeleteBookCommand { get; set; }
         public event Action<Book> AddBookRequested = delegate { };
         public event Action<Book> EditBookRequested = delegate { };
         public event Action Done = delegate { };
 
         private void OnBooksLoad()
         {
-            _allBooks = _booksRepository.GetBooks();
-            Books = new ObservableCollection<Book>(_allBooks);
+            _allBooks = _booksRepository.GetBookDataList();
+            Books = new ObservableCollection<BookData>(_allBooks);
         }
 
-        private List<Book> _allBooks;
-        private ObservableCollection<Book> _books;
-        public ObservableCollection<Book> Books
+        private List<BookData> _allBooks;
+        private ObservableCollection<BookData> _books;
+        public ObservableCollection<BookData> Books
         {
             get { return _books; }
             set
@@ -60,8 +60,8 @@ namespace Library.Books
             }
         }
 
-        private Book _selectedBook;
-        public Book SelectedBook
+        private BookData _selectedBook;
+        public BookData SelectedBook
         {
             get { return _selectedBook; }
             set
@@ -75,14 +75,15 @@ namespace Library.Books
             AddBookRequested(new Book());
         }
 
-        private void OnBookEdit(Book book)
+        private void OnBookEdit(int id)
         {
+            var book = _booksRepository.GetBookById(id);
             EditBookRequested(book);
         }
 
-        private void OnBookDelete(Book book)
+        private void OnBookDelete(int id)
         {
-            _booksRepository.DeleteBook(book.BookId);
+            _booksRepository.DeleteBook(id);
             Done();
         }
 
@@ -95,11 +96,11 @@ namespace Library.Books
         {
             if (string.IsNullOrWhiteSpace(searchInput))
             {
-                Books = new ObservableCollection<Book>(_allBooks);
+                Books = new ObservableCollection<BookData>(_allBooks);
             }
             else
             {
-                Books = new ObservableCollection<Book>(_allBooks.Where(c => c.Title.ToLower().Contains(searchInput)));
+                Books = new ObservableCollection<BookData>(_allBooks.Where(c => c.title.ToLower().Contains(searchInput)));
             }
         }
     }

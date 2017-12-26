@@ -17,6 +17,9 @@ namespace Library.Data
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Client> Clients { get; set; }
         public virtual DbSet<Reservation> Reservations { get; set; }
+        public virtual DbSet<BookData> BookDatas { get; set; }
+        public virtual DbSet<Number_of_reservation> Number_of_reservations { get; set; }
+        public virtual DbSet<Reminder> Reminders { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -97,6 +100,42 @@ namespace Library.Data
                 .HasMany(e => e.Reservations)
                 .WithRequired(e => e.Client)
                 .WillCascadeOnDelete(false);
+            //
+            modelBuilder.Entity<BookData>()
+                .Property(e => e.title)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<BookData>()
+                .Property(e => e.author)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<BookData>()
+                .Property(e => e.category)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Number_of_reservation>()
+                .Property(e => e.First_Name)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Number_of_reservation>()
+                .Property(e => e.Last_Name)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Reminder>()
+                .Property(e => e.First_Name)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Reminder>()
+                .Property(e => e.Last_Name)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Reminder>()
+                .Property(e => e.Email)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Reminder>()
+                .Property(e => e.Title)
+                .IsUnicode(false);
         }
     }
 }

@@ -50,5 +50,10 @@ namespace Library.Services
                 _dbContext.SaveChanges();
             }
         }
+
+        public List<Reminder> GetReminders()
+        {
+            return _dbContext.Reminders.ToList();
+        }
     }
 }

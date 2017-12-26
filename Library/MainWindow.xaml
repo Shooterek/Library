@@ -31,6 +31,12 @@
         <DataTemplate DataType="{x:Type book:AddEditBookViewModel}">
             <book:AddEditBookView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type reserv:ArchiveReservationsListViewModel}">
+            <reserv:ArchiveReservationsListView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type reserv:RemindersViewModel}">
+            <reserv:RemidersView/>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -39,6 +45,8 @@
         </Grid.RowDefinitions>
         <Grid x:Name="NavBar">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -55,6 +63,14 @@
                     Command="{Binding NavCommand}"
                     CommandParameter="reservationList"
                     Grid.Column="2"/>
+            <Button Content="Archiwum"
+                    Command="{Binding NavCommand}"
+                    CommandParameter="archive"
+                    Grid.Column="3"/>
+            <Button Content="Przypomnienia"
+                    Command="{Binding NavCommand}"
+                    CommandParameter="reminders"
+                    Grid.Column="4"/>
         </Grid>
         <Grid x:Name="MainContent"
               Grid.Row="1" >

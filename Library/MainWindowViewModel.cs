@@ -19,6 +19,8 @@ namespace Library
         private AddReservationViewModel _addReservationViewModel;
         private AddEditClientViewModel _addEditClientViewModel;
         private AddEditBookViewModel _addEditBookViewModel;
+        private ArchiveReservationsListViewModel _archiveReservationsListViewModel;
+        private RemindersViewModel _remindersViewModel;
         public RelayCommand<string> NavCommand { get; set; }
         public MainWindowViewModel()
         {
@@ -35,6 +37,8 @@ namespace Library
             _bookListViewModel = new BookListViewModel(_booksRepository);
             _clientListViewModel = new ClientListViewModel(_clientsRepository);
             _reservationListViewModel = new ReservationListViewModel(_reservationsRepository);
+            _archiveReservationsListViewModel = new ArchiveReservationsListViewModel(_reservationsRepository);
+            _remindersViewModel = new RemindersViewModel(_clientsRepository);
 
             NavCommand = new RelayCommand<string>(OnNav);
 
@@ -60,7 +64,7 @@ namespace Library
 
         private void ReturnToMenu()
         {
-            CurrentViewModel = _clientListViewModel;
+            CurrentViewModel = this;
         }
 
         private void NavToEditClient(Client client)
@@ -109,6 +113,12 @@ namespace Library
                     break;
                 case "reservationList":
                     CurrentViewModel = _reservationListViewModel;
+                    break;
+                case "archive":
+                    CurrentViewModel = _archiveReservationsListViewModel;
+                    break;
+                case "reminders":
+                    CurrentViewModel = _remindersViewModel;
                     break;
             }
         }

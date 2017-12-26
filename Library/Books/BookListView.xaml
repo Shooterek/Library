@@ -41,11 +41,11 @@
                   IsReadOnly="True"
                   SelectedItem="{Binding SelectedBook}">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Title}"
+                <DataGridTextColumn Binding="{Binding title}"
                                     Width="*"/>
-                <DataGridTextColumn Binding="{Binding Author}"
+                <DataGridTextColumn Binding="{Binding author}"
                                     Width="*"/>
-                <DataGridTextColumn Binding="{Binding Publisher}"
+                <DataGridTextColumn Binding="{Binding category}"
                                     Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
@@ -54,11 +54,11 @@
                     Grid.Row="2">
             <Button Content="Edytuj"
                     Command="{Binding EditBookCommand}"
-                    CommandParameter="{Binding SelectedBook}"
+                    CommandParameter="{Binding SelectedBook.bookid}"
                     IsEnabled="{Binding SelectedBook, Converter={StaticResource EnabledConverter}}"/>
             <Button Content="Usuń"
                     Command="{Binding DeleteBookCommand}"
-                    CommandParameter="{Binding SelectedBook}"
+                    CommandParameter="{Binding SelectedBook.bookid}"
                     IsEnabled="{Binding SelectedBook, Converter={StaticResource EnabledConverter}}"/>
         </StackPanel>
     </Grid>

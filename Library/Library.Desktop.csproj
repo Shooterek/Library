@@ -102,6 +102,14 @@
       <DependentUpon>AddReservationView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Reservations\AddReservationViewModel.cs" />
+    <Compile Include="Reservations\ArchiveReservationsListView.xaml.cs">
+      <DependentUpon>ArchiveReservationsListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Reservations\ArchiveReservationsListViewModel.cs" />
+    <Compile Include="Reservations\RemindersView.xaml.cs">
+      <DependentUpon>RemindersView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Reservations\RemindersViewModel.cs" />
     <Compile Include="Reservations\ReservationListView.xaml.cs">
       <DependentUpon>ReservationListView.xaml</DependentUpon>
     </Compile>
@@ -113,6 +121,7 @@
     <Compile Include="Services\IBooksRepository.cs" />
     <Compile Include="Services\ICategoriesRepository.cs" />
     <Compile Include="Services\IClientsRepository.cs" />
+    <Compile Include="Services\IReminderService.cs" />
     <Compile Include="Services\IReservationsRepository.cs" />
     <Page Include="Books\AddEditBookView.xaml">
       <SubType>Designer</SubType>
@@ -146,6 +155,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Reservations\ArchiveReservationsListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Reservations\RemindersView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Reservations\ReservationListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -170,6 +187,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Library.Data.Archive.datasource" />
     <None Include="Properties\DataSources\Library.Data.Book.datasource" />
     <None Include="Properties\DataSources\Library.Data.Category.datasource" />
     <None Include="Properties\DataSources\Library.Data.Client.datasource" />

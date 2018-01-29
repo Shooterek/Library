@@ -29,9 +29,8 @@ namespace Library
             IClientsRepository _clientsRepository = new EfClientsRepository(dbContext);
             IBooksRepository _booksRepository = new EfBooksRepository(dbContext);
             IReservationsRepository _reservationsRepository = new EfReservationsRepository(dbContext);
-            ICategoriesRepository _categoriesRepository = new EfCategoriesRepository(dbContext);
 
-            _addEditBookViewModel = new AddEditBookViewModel(_categoriesRepository, _booksRepository);
+            _addEditBookViewModel = new AddEditBookViewModel(_booksRepository);
             _addEditClientViewModel = new AddEditClientViewModel(_clientsRepository);
             _addReservationViewModel = new AddReservationViewModel(_reservationsRepository, _booksRepository);
             _bookListViewModel = new BookListViewModel(_booksRepository);
@@ -53,6 +52,9 @@ namespace Library
             _bookListViewModel.Done += ReturnToMenu;
             _clientListViewModel.Done += ReturnToMenu;
             _reservationListViewModel.Done += ReturnToMenu;
+            _remindersViewModel.Done += ReturnToMenu;
+
+            _currentViewModel = _clientListViewModel;
         }
 
         private BindableBase _currentViewModel;
@@ -64,7 +66,7 @@ namespace Library
 
         private void ReturnToMenu()
         {
-            CurrentViewModel = this;
+            CurrentViewModel = _clientListViewModel;
         }
 
         private void NavToEditClient(Client client)

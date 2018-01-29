@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,15 +12,13 @@ namespace Library.Books
 {
     public class AddEditBookViewModel : BindableBase
     {
-        private ICategoriesRepository _categoriesRepository;
         private IBooksRepository _booksRepository;
 
-        public AddEditBookViewModel(ICategoriesRepository categoriesRepository, IBooksRepository booksRepository)
+        public AddEditBookViewModel(IBooksRepository booksRepository)
         {
             _booksRepository = booksRepository;
-            _categoriesRepository = categoriesRepository;
-            Categories = new List<Category>(_categoriesRepository.GetCategories());
-            SaveCommand = new RelayCommand(OnSave, CanSave);
+            Categories = new List<Category>(_booksRepository.GetCategories());
+            SaveCommand = new RelayCommand(OnSave);
             CancelCommand = new RelayCommand(OnCancel);
         }
 
@@ -41,8 +40,7 @@ namespace Library.Books
             set
             {
                 SetProperty(ref _book, value);
-                var category = Categories.SingleOrDefault(c => c.CategoryId == value.CategoryId);
-                SelectedCategory = category;
+                SelectedCategory = Categories.SingleOrDefault(c => c.CategoryId == value.CategoryId);
             }
         }
 
@@ -71,20 +69,22 @@ namespace Library.Books
         private void OnSave()
         {
             Book.Category = SelectedCategory;
-            if (EditMode)
+            try
             {
-                _booksRepository.UpdateBook(Book);
+                if (EditMode)
+                {
+                    _booksRepository.UpdateBook(Book);
+                }
+                else
+                {
+                    _booksRepository.AddBook(Book);
+                }
+                Done();
             }
-            else
+            catch (Exception)
             {
-                _booksRepository.AddBook(Book);
+                // ignored
             }
-            Done();
-        }
-
-        private bool CanSave()
-        {
-            return true;
         }
     }
 }

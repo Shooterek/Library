@@ -45,8 +45,16 @@
                   SelectedItem="{Binding SelectedClient}">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding FirstName}"
+                                    Header="Imię"
                                     Width="*"/>
                 <DataGridTextColumn Binding="{Binding LastName}"
+                                    Header="Nazwisko"
+                                    Width="*"/>
+                <DataGridTextColumn Binding="{Binding Email}"
+                                    Header="Email"
+                                    Width="*"/>
+                <DataGridTextColumn Binding="{Binding PhoneNumber}"
+                                    Header="Numer telefonu"
                                     Width="*"/>
             </DataGrid.Columns>
         </DataGrid>

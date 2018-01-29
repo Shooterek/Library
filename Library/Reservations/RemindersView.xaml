@@ -13,19 +13,34 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Button Content="Wyślij powiadomienia"
+                    Command="{Binding SendNotificationsCommand}"
+                    HorizontalAlignment="Left"/>
+        </Grid>
         <DataGrid ItemsSource="{Binding Reminders}"
                   AutoGenerateColumns="False"
+                  Grid.Row="1"
                   IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding First_Name}"
+                                    Header="Imię"
                                     Width="*"/>
                 <DataGridTextColumn Binding="{Binding Last_Name}"
+                                    Header="Nazwisko"
                                     Width="*"/>
                 <DataGridTextColumn Binding="{Binding Email}"
+                                    Header="Email"
                                     Width="*"/>
                 <DataGridTextColumn Binding="{Binding Title}"
+                                    Header="Tytuł książki"
                                     Width="*"/>
                 <DataGridTextColumn Binding="{Binding Reservation_End}"
+                                    Header="Koniec wypożyczenia"
                                     Width="*"/>
             </DataGrid.Columns>
         </DataGrid>

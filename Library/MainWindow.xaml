@@ -8,7 +8,7 @@
         xmlns:reserv="clr-namespace:Library.Reservations"
         xmlns:book="clr-namespace:Library.Books"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Księgarnia" Height="350" Width="600">
     <Window.DataContext>
         <local:MainWindowViewModel/>
     </Window.DataContext>

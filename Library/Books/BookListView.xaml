@@ -42,10 +42,13 @@
                   SelectedItem="{Binding SelectedBook}">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding title}"
+                                    Header="Tytuł"
                                     Width="*"/>
                 <DataGridTextColumn Binding="{Binding author}"
+                                    Header="Autor"
                                     Width="*"/>
                 <DataGridTextColumn Binding="{Binding category}"
+                                    Header="Kategoria"
                                     Width="*"/>
             </DataGrid.Columns>
         </DataGrid>

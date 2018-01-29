@@ -24,11 +24,6 @@ namespace Library.Services
             return _dbContext.Clients.ToList();
         }
 
-        public Client GetClientById(int clientId)
-        {
-            return _dbContext.Clients.SingleOrDefault(c => c.ClientId == clientId);
-        }
-
         public void AddClient(Client client)
         {
             _dbContext.Clients.Add(client);

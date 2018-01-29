@@ -38,8 +38,13 @@
                   Grid.ColumnSpan="3">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Title}"
+                                    Header="Tytuł"
                                     Width="*"/>
                 <DataGridTextColumn Binding="{Binding Author}"
+                                    Header="Autor"
+                                    Width="*"/>
+                <DataGridTextColumn Binding="{Binding ISBN}"
+                                    Header="ISBN"
                                     Width="*"/>
                 <DataGridTemplateColumn Width="auto">
                     <DataGridTemplateColumn.CellTemplate>

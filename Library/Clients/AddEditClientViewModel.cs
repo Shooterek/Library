@@ -46,15 +46,22 @@ namespace Library.Clients
 
         private void OnSave()
         {
-            if (EditMode)
+            try
             {
-                _clientsRepository.UpdateClient(Client);
+                if (EditMode)
+                {
+                    _clientsRepository.UpdateClient(Client);
+                }
+                else
+                {
+                    _clientsRepository.AddClient(Client);
+                }
+                Done();
             }
-            else
+            catch (Exception)
             {
-                _clientsRepository.AddClient(Client);
+                // ignored
             }
-            Done();
         }
 
     }

@@ -1,3 +1,6 @@
+using System.Net;
+using System.Net.Mail;
+
 namespace Library.Data
 {
     using System;

@@ -15,5 +15,6 @@ namespace Library.Services
         void UpdateBook(Book book);
         void AddBook(Book book);
         void DeleteBook(int bookId);
+        List<Category> GetCategories();
     }
 }

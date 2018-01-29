@@ -34,12 +34,16 @@
                   IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Client.FirstName}"
+                                    Header="Imię"
                                     Width="*"/>
                 <DataGridTextColumn Binding="{Binding Client.LastName}"
+                                    Header="Nazwisko"
                                     Width="*"/>
                 <DataGridTextColumn Binding="{Binding Book.Title}"
+                                    Header="Tytuł książki"
                                     Width="*"/>
                 <DataGridTextColumn Binding="{Binding ReservationDate}"
+                                    Header="Data wypożyczenia"
                                     Width="*"/>
                 <DataGridTemplateColumn Width="auto">
                     <DataGridTemplateColumn.CellTemplate>

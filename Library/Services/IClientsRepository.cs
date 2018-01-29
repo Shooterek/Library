@@ -10,7 +10,6 @@ namespace Library.Services
     public interface IClientsRepository
     {
         List<Client> GetClients();
-        Client GetClientById(int clientId);
         void AddClient(Client client);
         void UpdateClient(Client client);
         void DeleteClient(int clientId);

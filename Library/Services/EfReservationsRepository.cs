@@ -21,22 +21,6 @@ namespace Library.Services
             return _dbContext.Reservations.Include("Book").Include("Client").ToList();
         }
 
-        public List<Reservation> GetReservationsByClientId(int clientId)
-        {
-            return _dbContext.Reservations.Where(r => r.ClientId == clientId).ToList();
-        }
-
-        public Reservation GetReservationById(int reservationId)
-        {
-            return _dbContext.Reservations.SingleOrDefault(r=>r.ReservationId == reservationId);
-        }
-
-        public Reservation GetReservationWithClientAndBook(int reservationId)
-        {
-            return _dbContext.Reservations.Include("Client").Include("Book")
-                .FirstOrDefault(r => r.ReservationId == reservationId);
-        }
-
         public List<Archive> GetArchive()
         {
             return _dbContext.Archives.Include("Book").Include("Client").ToList();

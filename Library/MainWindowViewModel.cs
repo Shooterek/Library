@@ -29,6 +29,7 @@ namespace Library
             IClientsRepository _clientsRepository = new EfClientsRepository(dbContext);
             IBooksRepository _booksRepository = new EfBooksRepository(dbContext);
             IReservationsRepository _reservationsRepository = new EfReservationsRepository(dbContext);
+            INotificationSender _notificationSender = new EmailNotificationSender();
 
             _addEditBookViewModel = new AddEditBookViewModel(_booksRepository);
             _addEditClientViewModel = new AddEditClientViewModel(_clientsRepository);
@@ -37,7 +38,7 @@ namespace Library
             _clientListViewModel = new ClientListViewModel(_clientsRepository);
             _reservationListViewModel = new ReservationListViewModel(_reservationsRepository);
             _archiveReservationsListViewModel = new ArchiveReservationsListViewModel(_reservationsRepository);
-            _remindersViewModel = new RemindersViewModel(_clientsRepository);
+            _remindersViewModel = new RemindersViewModel(_clientsRepository, _notificationSender);
 
             NavCommand = new RelayCommand<string>(OnNav);
 

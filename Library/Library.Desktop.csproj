@@ -120,6 +120,7 @@
       <DependentUpon>ClientListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Clients\ClientListViewModel.cs" />
+    <Compile Include="EmailFactory.cs" />
     <Compile Include="IfSelectedToIsEnabledConverter.cs" />
     <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="NegatableBooleanToVisibilityConverter.cs" />
@@ -143,8 +144,10 @@
     <Compile Include="Services\EfBooksRepository.cs" />
     <Compile Include="Services\EfClientsRepository.cs" />
     <Compile Include="Services\EfReservationsRepository.cs" />
+    <Compile Include="Services\EmailNotificationSender.cs" />
     <Compile Include="Services\IBooksRepository.cs" />
     <Compile Include="Services\IClientsRepository.cs" />
+    <Compile Include="Services\INotificationSender.cs" />
     <Compile Include="Services\IReservationsRepository.cs" />
     <Page Include="Books\AddEditBookView.xaml">
       <SubType>Designer</SubType>

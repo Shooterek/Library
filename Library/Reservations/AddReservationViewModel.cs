@@ -19,12 +19,12 @@ namespace Library.Reservations
         {
             _reservationsRepository = reservationsRepository;
             _booksRepository = booksRepository;
-            AddReservation = new RelayCommand<int>(BookABook);
-            LoadBooksCommand = new RelayCommand(LoadBooks);
-            ClearSearchInputCommand = new RelayCommand(ClearSearchInput);
+            AddReservation = new RelayCommand<int>(OnAddReservation);
+            LoadBooksCommand = new RelayCommand(OnLoadBooks);
+            ClearSearchInputCommand = new RelayCommand(OnClearSearchInput);
         }
 
-        private void ClearSearchInput()
+        private void OnClearSearchInput()
         {
             SearchInput = null;
         }
@@ -64,13 +64,13 @@ namespace Library.Reservations
             set { SetProperty(ref _books, value); }
         }
 
-        private void LoadBooks()
+        private void OnLoadBooks()
         {
             _allBooks = _booksRepository.GetBooks();
             Books = new ObservableCollection<Book>(_allBooks);
         }
 
-        private void BookABook(int bookId)
+        private void OnAddReservation(int bookId)
         {
             var reservation = new Reservation { BookId = bookId, ClientId = ClientId, ReservationDate = DateTime.Now };
             _reservationsRepository.AddReservation(reservation);

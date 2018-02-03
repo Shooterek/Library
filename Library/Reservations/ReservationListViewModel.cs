@@ -16,8 +16,8 @@ namespace Library.Reservations
         public ReservationListViewModel(IReservationsRepository reservationsRepository)
         {
             _reservationsRepository = reservationsRepository;
-            LoadData = new RelayCommand(LoadReservations);
-            EndReservationCommand = new RelayCommand<Reservation>(OnReservationEnd);
+            LoadData = new RelayCommand(OnLoadReservations);
+            EndReservationCommand = new RelayCommand<Reservation>(OnEndReservation);
             ClearSearchInputCommand = new RelayCommand(OnClearSearchInput);
         }
 
@@ -45,13 +45,13 @@ namespace Library.Reservations
             }
         }
 
-        private void LoadReservations()
+        private void OnLoadReservations()
         {
             _allReservations = _reservationsRepository.GetReservations();
             Reservations = new ObservableCollection<Reservation>(_allReservations);
         }
 
-        private void OnReservationEnd(Reservation reservation)
+        private void OnEndReservation(Reservation reservation)
         {
             _reservationsRepository.DeleteReservation(reservation.ReservationId);
             Done();

@@ -16,10 +16,10 @@ namespace Library.Clients
         public ClientListViewModel(IClientsRepository clientsRepository)
         {
             _clientsRepository = clientsRepository;
-            PlaceReservationCommand = new RelayCommand<Client>(AddReservation);
-            AddClientCommand = new RelayCommand(AddClient);
-            LoadClientsCommand = new RelayCommand(LoadClients);
-            ClearSearchInputCommand = new RelayCommand(ClearSearchInput);
+            PlaceReservationCommand = new RelayCommand<Client>(OnAddReservation);
+            AddClientCommand = new RelayCommand(OnAddClient);
+            LoadClientsCommand = new RelayCommand(OnLoadClients);
+            ClearSearchInputCommand = new RelayCommand(OnClearSearchInput);
             EditClientCommand = new RelayCommand<Client>(OnClientEdit);
             DeleteClientCommand = new RelayCommand<Client>(OnClientDelete);
         }
@@ -35,19 +35,19 @@ namespace Library.Clients
             EditClientRequested(client);
         }
 
-        private void ClearSearchInput()
+        private void OnClearSearchInput()
         {
             SearchInput = null;
         }
 
         private List<Client> _allClients;
-        private void LoadClients()
+        private void OnLoadClients()
         {
             _allClients = _clientsRepository.GetClients();
             Clients = new ObservableCollection<Client>(_allClients);
         }
 
-        private void AddClient()
+        private void OnAddClient()
         {
             AddClientRequested(new Client());
         }
@@ -107,11 +107,10 @@ namespace Library.Clients
             }
         }
 
-        private void AddReservation(Client client)
+        private void OnAddReservation(Client client)
         {
             PlaceReservationRequested(client.ClientId);
         }
-
 
     }
 }

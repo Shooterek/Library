@@ -81,9 +81,13 @@
     <Compile Include="Category.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="LibraryDbContext.cs" />
-    <Compile Include="Migrations\201801291534321_RunSeed.cs" />
-    <Compile Include="Migrations\201801291534321_RunSeed.Designer.cs">
-      <DependentUpon>201801291534321_RunSeed.cs</DependentUpon>
+    <Compile Include="Migrations\202011232117022_InitialMigration.cs" />
+    <Compile Include="Migrations\202011232117022_InitialMigration.Designer.cs">
+      <DependentUpon>202011232117022_InitialMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011232131089_RemoveConstraintFromISBNField.cs" />
+    <Compile Include="Migrations\202011232131089_RemoveConstraintFromISBNField.Designer.cs">
+      <DependentUpon>202011232131089_RemoveConstraintFromISBNField.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Number_of_reservation.cs" />
@@ -99,8 +103,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201801291534321_RunSeed.resx">
-      <DependentUpon>201801291534321_RunSeed.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202011232117022_InitialMigration.resx">
+      <DependentUpon>202011232117022_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011232131089_RemoveConstraintFromISBNField.resx">
+      <DependentUpon>202011232131089_RemoveConstraintFromISBNField.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

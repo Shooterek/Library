@@ -7,13 +7,13 @@ namespace Library.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class RunSeed : IMigrationMetadata
+    public sealed partial class RemoveConstraintFromISBNField : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(RunSeed));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(RemoveConstraintFromISBNField));
         
         string IMigrationMetadata.Id
         {
-            get { return "201801291534321_RunSeed"; }
+            get { return "202011232131089_RemoveConstraintFromISBNField"; }
         }
         
         string IMigrationMetadata.Source

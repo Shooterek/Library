@@ -28,7 +28,10 @@ namespace Library.Services
 
         public List<BookData> GetBookDataList()
         {
-            return _dbContext.BookDatas.ToList();
+            var books = _dbContext.Books.ToList();
+            var bookdatas = books.Select(b => new BookData { author = b.Author, bookid = b.BookId, category = b.Category.Category1, title = b.Title });
+
+            return bookdatas.ToList();
         }
 
         public void UpdateBook(Book book)

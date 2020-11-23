@@ -19,7 +19,6 @@ namespace Library.Data
         public int BookId { get; set; }
 
         [Required]
-        [StringLength(13)]
         public string ISBN { get; set; }
 
         [Required]

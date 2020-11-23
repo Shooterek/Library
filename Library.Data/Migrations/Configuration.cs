@@ -14,8 +14,17 @@ namespace Library.Data.Migrations
 
         protected override void Seed(Library.Data.LibraryDbContext context)
         {
-            var client = context.Clients.Single(client1 => client1.Email == "bartek9614@gmail.com");
-            context.Reservations.AddOrUpdate(new Reservation() {ClientId = client.ClientId, BookId = 1, ReservationDate = DateTime.Now.AddDays(-50)});
+            var cat1 = new Category() { Category1 = "Krymina³" };
+            var cat2 = new Category() { Category1 = "Powieœæ historyczna" };
+            var cat3 = new Category() { Category1 = "Sci-Fi" };
+            var cat4 = new Category() { Category1 = "Czasopismo" };
+
+            context.Categories.Add(cat1);
+            context.Categories.Add(cat2);
+            context.Categories.Add(cat3);
+            context.Categories.Add(cat4);
+
+            context.SaveChanges();
         }
     }
 }

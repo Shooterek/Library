@@ -8,7 +8,7 @@ namespace Library.Data
     public partial class LibraryDbContext : DbContext
     {
         public LibraryDbContext()
-            : base("name=LibraryDbContext")
+            : base("LibraryDbContext")
         {
         }
 

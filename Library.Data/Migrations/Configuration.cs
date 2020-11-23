@@ -14,17 +14,21 @@ namespace Library.Data.Migrations
 
         protected override void Seed(Library.Data.LibraryDbContext context)
         {
-            var cat1 = new Category() { Category1 = "Krymina³" };
-            var cat2 = new Category() { Category1 = "Powieœæ historyczna" };
-            var cat3 = new Category() { Category1 = "Sci-Fi" };
-            var cat4 = new Category() { Category1 = "Czasopismo" };
+            //If there are no categories, add some
+            if (!context.Categories.Any())
+            {
+                var cat1 = new Category() { Category1 = "Krymina³" };
+                var cat2 = new Category() { Category1 = "Powieœæ historyczna" };
+                var cat3 = new Category() { Category1 = "Sci-Fi" };
+                var cat4 = new Category() { Category1 = "Czasopismo" };
 
-            context.Categories.Add(cat1);
-            context.Categories.Add(cat2);
-            context.Categories.Add(cat3);
-            context.Categories.Add(cat4);
+                context.Categories.Add(cat1);
+                context.Categories.Add(cat2);
+                context.Categories.Add(cat3);
+                context.Categories.Add(cat4);
 
-            context.SaveChanges();
+                context.SaveChanges();
+            }
         }
     }
 }
